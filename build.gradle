@@ -1,12 +1,14 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.0'
-    id 'io.spring.dependency-management' version '1.1.0'
+//    id 'org.springframework.boot' version '3.0.0'
+//    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'ru.itfb'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
     compileOnly {
@@ -19,14 +21,30 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation ('org.springframework.boot:spring-boot-starter-data-jdbc') {
+//        exclude group: 'com.zaxxer', module: 'HikariCP'
+    }
+    implementation ('org.springframework.boot:spring-boot-starter-jdbc') {
+//        exclude group: 'com.zaxxer', module: 'HikariCP'
+    }
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.oracle.database.messaging:aqapi:21.3.0.0'
+    implementation 'org.springframework:spring-jms'
+//    implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.0.0'
+//    implementation 'jakarta.jms:jakarta.jms-api:3.0.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+//    implementation 'com.oracle.database.jdbc:ojdbc8'
+    implementation 'com.oracle.database.jdbc:ojdbc8:21.8.0.0'
+//    implementation 'com.oracle.database.ha:ons:21.8.0.0'
+//    implementation 'com.oracle.database.jdbc:ucp:21.8.0.0'
+//    implementation 'com.oracle.database.security:oraclepki:21.8.0.0'
+//    implementation 'com.oracle.database.security:osdt_core:21.8.0.0'
+//    implementation 'com.oracle.database.security:osdt_cert:21.8.0.0'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation 'javax.transaction:javax.transaction-api:1.3'
+    implementation 'javax.transaction:jta:1.1'
 }
 
 tasks.named('test') {
